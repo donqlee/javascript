@@ -21,24 +21,104 @@
   </head>
   <body>
 
+
+    <div class="left-menu">
+      <p>Menu Title</p>
+    </div>
+
     <div class="black-background">
  
         <div class="white-background">
             <p>로그인하세요</p>
+            <form action="login.php">
+              <div class="form-group">
+                <input class="form-control" placeholder="Email" id="email">
+                <p id="email-alert">이메일이 빈칸입니다.</p>
+                <p id="email-alert2">이메일 형식에 맞지 않습니다.</p>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" id="password">
+                <p id="password-alert">비빌번호가 빈칸입니다.</p>
+                <p id="password-alert2">비빌번호에 대문자가 없습니다.</p>
+              </div>
+              <button id="submit" type="submit" class="btn btn-primary">전송</button>
+              <button id="close" class="btn btn-danger">닫기</button>
+            </form>
+
+            
         </div>
     </div>
-    <div class="jumbotron">
+    <div class="nav-menu">
+      <h4>Shirts Studio</h4>
+      <a id="nav-sub-button">Products</a>
+    </div>
+    <ul class="list-group nav-sub">
+      <li class="list-group-item">Outer</li>
+      <li class="list-group-item">Innerwear</li>
+      <li class="list-group-item">Shirts</li>
+    </ul>
+    
+    <div class="jumbotron main-background">
       <h1 class="display-4">Shirts Studio</h1>
       <p class="lead">this</p>
       <hr class="my-4" />
       <p>It users blah</p>
-      <a id="login" class="btn btn-primary btn-lg" href="#" role="button">로그인</a>
+      <a id="login" class="btn btn-primary btn-lg" href="#" role="button">Log In</a>
+      <a id="show-menu" class="btn btn-danger btn-lg" href="#" role="button">Show Menu</a>
     </div>
 
+
+
     <script>
-        $('#login').on('click', function(){
-            $('.black-background').css('display', 'block')
+      $('#show-menu').click(function(){
+        $('.left-menu').animate({marginLeft : '0px'}, 500)
+      })
+      $('#login').click(function(){
+          var black_background = $('.black-background');     
+          black_background.css('transform', 'translateY(0px)')
+      })
+
+      $('form').on('submit', function(e){
+         var email_value = $('#email').val()
+         var password_value = $('#password').val()
+
+         if(email_value == ""){
+          e.preventDefault();
+           $('#email-alert').show();
+         }else if(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(email_value) == false){
+           e.preventDefault();
+           $('#email-alert2').show();
+         }
+         if(password_value == ""){
+           e.preventDefault();
+           $('#password-alert').show();
+         }else if(/[A-Z]/.test(password_value) == false){
+          e.preventDefault();
+          $('#password-alert2').show();
+         }
+      })
+
+      /* $('#email').on('input', function(){
+            input 값이 변결될때 실행
+      })*/
+      /* $('#email').on('change', function(){
+            값이 변경되고 focus 잃을 때 실행
+      })*/
+      
+      /*$('#login').on('click', function(){
+             $('.black-background').css('display', 'block')
+             $('.black-background').show() //반대 hide()
+             $('.black-background').fadeIn() // 서서히 나타남 반대 fadeOut()
+             $('.black-background').slideDown() // 반대 slideUp()
+        }) */
+        $('#close').click(function(){
+          var black_background = $('.black-background');
+          black_background.css('transform', 'translateY(-1400px)')
         })
+        $('#nav-sub-button').click(function(){
+          $('.nav-sub').slideToggle();
+        })
+     
     </script>
 
     
