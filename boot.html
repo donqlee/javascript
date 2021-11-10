@@ -85,9 +85,9 @@
     
     <div class="container mt-5">
       <ul class="list">
-        <li class="tab-button">Products</li>
-        <li class="tab-button active">Information</li>
-        <li class="tab-button">Shipping</li>
+        <li class="tab-button" data-id="0">Products</li>
+        <li  class="tab-button active" data-id="1">Information</li>
+        <li  class="tab-button" data-id="2">Shipping</li>
       </ul>
     
       <div class="tab-content">
@@ -100,6 +100,9 @@
         <p>배송정보입니다. Shipping</p>
       </div>
     </div>
+
+    <h4 id="title">상품제목</h4>
+    <p id = "text">상품내용</p>
 
     <script src="tab.js"></script>
     <script>
@@ -160,6 +163,19 @@
           var black_background = $('.black-background');
           black_background.css('transform', 'translateY(-1400px)')
         })
+        // 모달 창 외 클릭 시 모달창 하이드
+        $('.black-background').click(function(e){
+          // e.target 지금 실제로 클릭한 요소 
+          // e.currentTarget; 지금 이벤트리스너가 달린 곳 = $(this) = $('.black-background')
+          // e.preventDefault(); 기본동작 막기
+
+          // 자바스크립트로 찾은 것은 자바스크립트와 비교 해야함 제이쿼리로 찾은 걸로 비교 하면 안됌
+
+          var black_background = $('.black-background');
+          if(e.target == e.currentTarget){
+            black_background.css('transform', 'translateY(-1400px)')
+          }
+        })
         $('#nav-sub-button').click(function(){
           $('.nav-sub').slideToggle();
         })
@@ -192,6 +208,14 @@
               now -= 1;
             }
         })
+
+        var array = ['BMW', 520];
+        var object = {brand: 'BMW', model: 520};
+
+        var 자료 = [{brand: 'BMW'}, {model:520}]
+        $('#title').html(자료[0].brand);
+        $('#text').html(자료[1].model);
+
     </script>
 
     
