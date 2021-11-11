@@ -29,25 +29,33 @@
       <div class="form-group">
         <p>상품선택</p>
         <select class="form-control" id="option1">
-          <option>모자</option>
+          <option>바지</option>
           <option>셔츠</option>
         </select>
         <div class="size-select">
           <p class="mt-4">사이즈선택</p>
-          <select class="form-control" id="option2">
-            <option>95</option>
-            <option>100</option>
-            <option>105</option>
-          </select>
+          <select class="form-control" id="option2"></select>
         </div>
       </div>
     </form>
     <script>
+      var 셔츠사이즈 = [90, 95, 100, 105, 110];
+      var 바지사이즈 = [26, 28, 30, 32, 34, 36];
       $("#option1").on("change", function () {
         if ($("#option1").val() == "셔츠") {
-          $(".size-select").show();
-        } else {
-          $(".size-select").hide();
+          $("#option2").html("");
+          for (let i = 0; i < 셔츠사이즈.length; i++) {
+            var 템플릿 = `<option>${셔츠사이즈[i]}</option>`;
+            $("#option2").append(템플릿);
+          }
+        } else if ($("#option1").val() == "바지") {
+          $("#option2").html("");
+          바지사이즈.forEach(function (i) {
+            // array 길이 만큼 반복해줌
+            // i 값은 사이즈 안에 있는 하나하나의 데이터
+            var 템플릿 = `<option>${i}</option>`;
+            $("#option2").append(템플릿);
+          });
         }
       });
     </script>
